@@ -1,6 +1,7 @@
 package coinpurse;
 /**
  * A coin with a monetary value and currency.
+ * 
  * @author Supisara Chuthathumpitak
  */
 public class Coin implements Comparable<Coin>{
@@ -70,7 +71,7 @@ public class Coin implements Comparable<Coin>{
 	}
 
 	/**
-	 * Return the value and currency which is String.
+	 * toString returns a string description of the coin.
 	 * @return the value with currency.
 	 */
 	public String toString() { 
