@@ -119,9 +119,10 @@ public class Purse {
 			}
 		}
 		
-		array = new Coin[templist.size()];
 		if (amount != 0)
 			return null;
+		
+		array = new Coin[templist.size()];
 		if (amount == 0) {
 			for (Coin y : templist) {
 				money.remove(y);
