@@ -5,7 +5,7 @@ package coinpurse;
  * 
  * @author Supisara Chuthathumpitak
  */
-public interface Valuable {
+public interface Valuable extends Comparable<Valuable>{
 	public double getValue();
 	public String getCurrency();
 }

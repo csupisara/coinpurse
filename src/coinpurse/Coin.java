@@ -4,20 +4,17 @@ package coinpurse;
  * 
  * @author Supisara Chuthathumpitak
  */
-public class Coin implements Comparable<Coin>, Valuable{
+public class Coin extends AbstractValuable{
 	public static final String DEFAULT_CURRENCY = "Baht";
-	/** Value of the coin. */
-	private final double value;
-	/** The currency, of course. */
-	private final String currency;
+	private double finalValue;
+	private String finalCurrency;
 
 	/**
 	 * Initialize a coin with given value using the default currency.
 	 * @param value is the monetary value of that coin.
 	 */
 	public Coin( double value ) {
-		this.value = value;
-		this.currency = DEFAULT_CURRENCY;
+		this(value, DEFAULT_CURRENCY);
 	}
 
 	/**
@@ -26,48 +23,19 @@ public class Coin implements Comparable<Coin>, Valuable{
 	 * @param currency is the currency of that coin.
 	 */
 	public Coin( double value, String currency ) {
-		this.value = value;
-		this.currency = currency;
+		super(value, currency);
+		this.finalValue = value;
+		this.finalCurrency = currency;
 	}
-
+	
 	/**
-	 * Get the value of that coin.
-	 * @return value of the coin we pick.
+	 * Print value and currency.
+	 * @param finalValue is the value that want to print out.
+	 * @param finalCurrency is the currency that want to print out.
 	 */
-	public double getValue() { 
-		return this.value;
-	} 
-
-	/**
-	 * Get the current of that coin.
-	 * @return a current of the coin we pick.
-	 */
-	public String getCurrency() { 
-		return this.currency;
-	}
-
-	/**
-	 * Compare the coin that it have same value and same currency or not.
-	 * @param obj is the coin that want to test.
-	 * @return that it equals or not.
-	 */
-	public boolean equals(Object obj) {
-		if(obj == null) return false;
-		if(obj.getClass() != this.getClass()) return false;
-		Coin other = (Coin) obj;
-		if((this.value == other.value) && (this.currency.equals(other.currency))) return true;
-		return false;
-	}
-
-	/**
-	 * Order coin by value, smaller value comes first.
-	 * @param other is the coin that want to order.
-	 * @return the coin that order from smallest to largest.
-	 */
-	@Override
-	public int compareTo(Coin other){
-		if(other == null) return -1;
-		return (int) Math.signum(this.value - other.value);
+	public void print(double finalValue, String finalCurrency) {
+		this.finalValue = finalValue;
+		this.finalCurrency = finalCurrency;
 	}
 
 	/**
@@ -75,6 +43,7 @@ public class Coin implements Comparable<Coin>, Valuable{
 	 * @return the value with currency.
 	 */
 	public String toString() { 
-		return value + "-" + this.currency; 
+		if(this.finalCurrency.equals("Sen")) return String.format("%.0f %s coin", this.finalValue, this.finalCurrency);
+		return String.format("%.0f-%s coin", this.finalValue, this.finalCurrency);
 	}
 }
