@@ -43,6 +43,7 @@ public abstract class AbstractValuable implements Valuable{
 	 * Order by value, smaller value comes first.
 	 * @param other is the monetary that want to order.
 	 * @return the order of the valuable.
+	 * @see java.lang.Comparable#compareTo(java.lang.Object)
 	 */
 	@Override
 	public int compareTo( Valuable other ) {
@@ -52,17 +53,17 @@ public abstract class AbstractValuable implements Valuable{
 		return -1;
 	}
 
-	/**
-	 * Get the value of that valuable.
-	 * @return value of the valuable we pick.
+	/*
+	 * (non-Javadoc)
+	 * @see coinpurse.Valuable#getValue()
 	 */
 	public double getValue() {
 		return this.value;
 	}
 
-	/**
-	 * Get the current of that valuable.
-	 * @return a current of the valuable we pick.
+	/*
+	 * (non-Javadoc)
+	 * @see coinpurse.Valuable#getCurrency()
 	 */
 	public String getCurrency() {
 		return this.currency;
