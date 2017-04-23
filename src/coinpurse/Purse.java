@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * A purse contains coins, banknotes and other kinds of monetary objects. 
@@ -12,7 +14,7 @@ import java.util.List;
  * 
  * @author Supisara Chuthathumpitak
  */
-public class Purse {
+public class Purse extends Observable{
 	/** Collection of objects in the purse. */
 
 	/**
@@ -90,6 +92,8 @@ public class Purse {
 		if (isFull())
 			return false;
 		this.money.add(valuable);
+		setChanged();
+		notifyObservers(">>>>deposit " + valuable.toString());
 		return true;
 	}
 
@@ -104,7 +108,8 @@ public class Purse {
 	public Valuable[] withdraw(double amount) {
 		Collections.sort(money, new CompareByCurrency());
 		Collections.reverse(money);
-
+		double temp = amount;
+		
 		List<Valuable> templist = new ArrayList<>();
 		Valuable[] array;
 		if(amount < 0) return null;
@@ -128,6 +133,8 @@ public class Purse {
 			}
 			templist.toArray(array);
 		}
+		setChanged();
+		notifyObservers(">>>>>withdraw " + temp);
 		return array;
 	}
 
@@ -137,5 +144,13 @@ public class Purse {
 	 */
 	public String toString() {
 		return count() + " with value " + getBalance();
+	}
+	
+	/**
+	 * View the purse list.
+	 * @return an immutable list view of the Purse contents (to protect the Purse). 
+	 */
+	public List<Valuable> getList() {
+		return Collections.unmodifiableList(money);
 	}
 }
