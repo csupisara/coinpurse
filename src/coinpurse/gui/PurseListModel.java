@@ -17,6 +17,7 @@ import coinpurse.Valuable;
 /**
  * This class provides a ListModel interface for querying
  * the contents of the purse. It is a kind of adapter.
+ * @author Supisara Chuthathumpitak
  */
 public class PurseListModel extends AbstractListModel<Valuable> implements Observer{
 	private Purse purse;
