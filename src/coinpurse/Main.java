@@ -35,9 +35,9 @@ public class Main {
 		purse.addObserver(observer);
 		purse.addObserver(purseListModel);
 		
-//		purseBalanceObserver.run();
+		purseBalanceObserver.run();
 //		observer.run();
-		purseListModel.run();
+//		purseListModel.run();
 //		purseStatusObserver.run();
 		console.run();
 	}

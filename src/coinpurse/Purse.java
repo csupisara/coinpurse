@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
+import coinpurse.strategy.WithdrawStrategy;
+
 /**
  * A purse contains coins, banknotes and other kinds of monetary objects. 
  * You can insert, withdraw money, check the balance, and check if the purse is full. 
@@ -14,7 +16,7 @@ import java.util.Observer;
  * 
  * @author Supisara Chuthathumpitak
  */
-public class Purse extends Observable{
+public class Purse extends Observable implements WithdrawStrategy{
 	/** Collection of objects in the purse. */
 
 	/**
@@ -23,6 +25,8 @@ public class Purse extends Observable{
 	 */
 	private final int capacity;
 	List<Valuable> money;
+	private Valuable valuable;
+	private WithdrawStrategy strategy;
 
 	/**
 	 * Initialize a purse with a specified capacity.
@@ -152,5 +156,15 @@ public class Purse extends Observable{
 	 */
 	public List<Valuable> getList() {
 		return Collections.unmodifiableList(money);
+	}
+	
+	public void SetWithdrawStrategy(WithdrawStrategy withdrawStrategy) {
+		
+	}
+
+	@Override
+	public List<Valuable> withdraw(double amount, List<Valuable> money) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

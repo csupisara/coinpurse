@@ -1,6 +1,7 @@
 package coinpurse;
 
 import java.util.*;
+import java.util.function.Predicate;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import javax.print.DocFlavor.STRING;
@@ -21,12 +22,18 @@ public class CoinUtil {
 	 *     that have the requested currency.  
 	 */
 	public static List<Valuable> filterByCurrency(final List<Valuable> valuelist, String currency) {
+		Predicate<Valuable> sameCurrency = (s) -> (s.getCurrency().equals(currency));
 		List<Valuable> valueCurrent = new ArrayList<>();
-		for(Valuable x : valuelist){
-			if(x.getCurrency().equals(currency)){
-				valueCurrent.add(x);
-			}
+		
+		if(currency != null){
+			valueCurrent = valuelist.stream().filter(sameCurrency).collect(Collectors.toList());
 		}
+//		List<Valuable> valueCurrent = new ArrayList<>();
+//		for(Valuable x : valuelist){
+//			if(x.getCurrency().equals(currency)){
+//				valueCurrent.add(x);
+//			}
+//		}
 		return valueCurrent; // return a list of monetary objects references copied from valuelist
 	}
 
